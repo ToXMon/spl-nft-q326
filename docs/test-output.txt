@@ -1,0 +1,13 @@
+
+> scripts-solana-2@1.0.0 test
+> npx ts-node tests/verify.ts
+
+on-chain verification (read-only):
+
+  PASS  mint initialized — decimals=6, supply=1000000000
+  PASS  supply matches — 1,000,000,000 base units (1,000 tokens)
+  PASS  owner ATA balance — 900000000 base units (transfer reflected)
+  PASS  recipient ATA balance — 100000000 base units
+  PASS  NFT asset exists — name="SPL Bootcamp Q326 NFT (Updated)"
+
+result: 5 passed, 0 warned/skipped

@@ -1,0 +1,11 @@
+{
+  "name": "Turbine3 Bootcamp Badge",
+  "symbol": "Q326",
+  "description": "A class-project NFT minted with Metaplex Core on Solana devnet (SPL Bootcamp Q3-2026).",
+  "image": "https://files.catbox.moe/5xokag.png",
+  "attributes": [
+    { "trait_type": "Class", "value": "solana-bootcamp q3-2026" },
+    { "trait_type": "Program", "value": "MPL Core" },
+    { "trait_type": "Network", "value": "devnet" }
+  ]
+}
