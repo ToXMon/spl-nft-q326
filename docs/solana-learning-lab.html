@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solana Learning Lab — from accounts to AMMs</title>
+<style>
+:root{--bg:#090b13;--panel:#111625;--panel2:#171d2e;--ink:#eef2ff;--muted:#9ba8c7;--line:#29324a;--a:#8b7cff;--b:#25d0a6;--warn:#ffca68;--bad:#ff778d;--shadow:0 18px 50px #0006}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% 0,#232050 0,transparent 35%),var(--bg);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}a{color:#a99dff}button{font:inherit;color:inherit;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:.65rem .85rem;cursor:pointer}button:hover,button.active{border-color:var(--a);background:#29234d}.wrap{max-width:1180px;margin:auto;padding:0 22px}.hero{padding:72px 0 48px}.eyebrow{color:var(--b);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}.hero h1{font-size:clamp(2.5rem,7vw,5.8rem);line-height:.98;max-width:900px;margin:16px 0}.hero p{font-size:1.2rem;color:var(--muted);max-width:780px}.pill{display:inline-block;border:1px solid #ffffff22;border-radius:99px;padding:.2rem .65rem;color:var(--muted);font-size:.85rem;margin:.2rem}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{background:linear-gradient(145deg,#141a2a,#0e1320);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}.span4{grid-column:span 4}.span6{grid-column:span 6}.span8{grid-column:span 8}.span12{grid-column:span 12}@media(max-width:800px){.span4,.span6,.span8{grid-column:span 12}}h2{font-size:2rem;margin:0 0 12px}h3{margin:6px 0 8px;color:#fff}section{padding:34px 0;border-top:1px solid #ffffff10}.muted{color:var(--muted)}.accent{color:var(--b)}.warn{color:var(--warn)}.bad{color:var(--bad)}.tabs{position:sticky;top:0;z-index:5;background:#090b13dd;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:10px 0;overflow:auto;white-space:nowrap}.tabs button{margin-right:6px}.lesson{display:none}.lesson.show{display:block}.lesson-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.progress{height:9px;background:#252c40;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));width:0;transition:.3s}.check{display:flex;gap:10px;align-items:flex-start;margin:9px 0}.check input{accent-color:var(--b);margin-top:6px}.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.node{padding:12px 15px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);min-width:120px;text-align:center}.arrow{color:var(--b);font-size:1.4rem}.code{background:#080c15;border:1px solid var(--line);border-radius:12px;padding:16px;overflow:auto;color:#c7f9ea;font:14px/1.6 ui-monospace,SFMono-Regular,monospace;white-space:pre}.quiz button{margin:4px}.answer{min-height:28px;margin-top:8px}.slider{width:100%;accent-color:var(--a)}.metric{font-size:2rem;font-weight:800;color:var(--b)}table{border-collapse:collapse;width:100%;font-size:.95rem}td,th{border-bottom:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{color:var(--b)}footer{padding:48px 0 80px;color:var(--muted)}.small{font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="tabs"><div class="wrap">
+<button onclick="showLesson('map')">Map</button><button onclick="showLesson('mental')">Mental model</button><button onclick="showLesson('build')">Build loop</button><button onclick="showLesson('programs')">Programs</button><button onclick="showLesson('defi')">AMM + DeFi</button><button onclick="showLesson('career')">Professional path</button>
+<span class="pill" id="score">0% complete</span>
+</div></div>
+<main class="wrap">
+<header class="hero">
+<div class="eyebrow">Solana Developer Learning Lab · interactive field guide</div>
+<h1>Stop memorizing APIs.<br><span style="color:var(--b)">Understand the machine.</span></h1>
+<p>A visual, practical path from your SPL token and MPL Core work to Anchor programs, PDA-controlled vaults, trustless escrow, AMMs, and production DeFi. Read a card, change a knob, run the next command.</p>
+<span class="pill">local-first</span><span class="pill">test before chain</span><span class="pill">account-centric</span><span class="pill">failure paths matter</span>
+</header>
+
+<section id="map" class="lesson show">
+<h2>Your course map</h2><p class="muted">The shortest useful story: tokens are assets, accounts hold state, programs enforce transitions, and transactions are atomic state changes.</p>
+<div class="grid">
+<div class="card span4"><h3>Week 3 · Tokens</h3><p>Mint → ATA → mint tokens → transfer → inspect decimals and ownership.</p><strong class="accent">You built this.</strong></div>
+<div class="card span4"><h3>Week 4 · Programs</h3><p>State machines, CPI, PDA signing, and a frontend that reads, signs, confirms, and refreshes.</p><strong class="accent">This is the bridge.</strong></div>
+<div class="card span4"><h3>Week 5 · Escrow/DeFi/NFTs</h3><p>Trustless swaps, AMM mechanics, and asset tooling. Your Homework 2 is the program-depth checkpoint.</p><strong class="accent">Current frontier.</strong></div>
+</div>
+<div class="card" style="margin-top:18px"><h3>Choose your next action</h3><div class="flow"><button onclick="showLesson('mental')">I need the mental model</button><button onclick="showLesson('build')">I need the workflow</button><button onclick="showLesson('programs')">I need Anchor/PDA help</button><button onclick="showLesson('defi')">I need AMMs/DeFi</button></div></div>
+</section>
+
+<section id="mental" class="lesson">
+<h2>Solana in one analogy: a shared spreadsheet with strict row permissions</h2>
+<div class="grid">
+<div class="card span6"><h3>Accounts are the rows</h3><p>A wallet is not a bag containing every token. A <b>mint account</b> defines a token. A <b>token account</b> holds one owner's balance of one mint. An <b>ATA</b> is the predictable default row for an owner+mint pair.</p><div class="flow"><div class="node">Mint<br><small>rules + supply</small></div><div class="arrow">→</div><div class="node">ATA<br><small>balance row</small></div><div class="arrow">→</div><div class="node">Wallet<br><small>authority</small></div></div></div>
+<div class="card span6"><h3>Programs are the formulas</h3><p>Programs are stateless code. They do not “own” your business state; separate accounts do. A transaction names every row the formula may read/write. The runtime can then parallelize non-conflicting work.</p><div class="code">transaction = instructions + account metas + signatures
+success = every instruction succeeds
+failure = all state changes roll back</div></div>
+<div class="card span6"><h3>PDAs are numbered lockers</h3><p>A PDA has no private key. It is derived from seeds and a program ID. The program can sign for it with the same seeds. That is why an escrow vault can release tokens only through program logic.</p><div class="code">escrow = findPDA(["escrow", maker, seed])
+vault  = ATA(owner = escrow, mint = tokenA)</div></div>
+<div class="card span6"><h3>CPIs are asking another clerk</h3><p>Your program can call System, Token, or Associated Token programs. A user signs for their own funds; a PDA signs with <code>invoke_signed</code>. Always ask: <b>who is the authority?</b></p><div class="quiz"><b>Who signs to release Token A from an escrow vault?</b><br><button onclick="quiz(this,false)">Maker directly</button><button onclick="quiz(this,true)">Escrow PDA via program seeds</button><div class="answer"></div></div></div>
+</div>
+</section>
+
+<section id="build" class="lesson">
+<h2>The professional development loop</h2>
+<p class="muted">Use this loop for every instruction, from a one-line transfer to a DEX.</p>
+<div class="card"><div class="flow"><div class="node">1. Model<br><small>state + invariants</small></div><div class="arrow">→</div><div class="node">2. Accounts<br><small>who reads/writes?</small></div><div class="arrow">→</div><div class="node">3. Logic<br><small>guards + CPI</small></div><div class="arrow">→</div><div class="node">4. Test local<br><small>LiteSVM</small></div><div class="arrow">→</div><div class="node">5. Simulate<br><small>before send</small></div><div class="arrow">→</div><div class="node">6. Deploy<br><small>verify explorer</small></div></div></div>
+<div class="grid" style="margin-top:18px">
+<div class="card span6"><h3>Before editing code</h3><div class="check"><input type="checkbox" data-task> Write the state machine: allowed states and transitions.</div><div class="check"><input type="checkbox" data-task> List every account, signer, writable flag, owner, PDA seed.</div><div class="check"><input type="checkbox" data-task> Define conservation rules: what can increase, decrease, or move?</div><div class="check"><input type="checkbox" data-task> Name failure cases before happy paths.</div></div>
+<div class="card span6"><h3>After editing code</h3><div class="check"><input type="checkbox" data-task> Format and lint.</div><div class="check"><input type="checkbox" data-task> Run LiteSVM tests against compiled SBF.</div><div class="check"><input type="checkbox" data-task> Simulate before broadcasting.</div><div class="check"><input type="checkbox" data-task> Verify resulting accounts and balances on-chain.</div></div>
+</div>
+<h3 style="margin-top:24px">Debug by layer</h3><table><tr><th>Symptom</th><th>Look here first</th><th>Typical fix</th></tr><tr><td>Account not found</td><td>Seeds, network, PDA program ID</td><td>Print public keys and derive again</td></tr><tr><td>Missing signature</td><td>Authority vs signer</td><td>Use user signer or PDA signer seeds</td></tr><tr><td>Invalid account</td><td>Mint/owner/token-program constraints</td><td>Decode the account; verify relationships</td></tr><tr><td>Transaction “worked” but state wrong</td><td>Units and decimals</td><td>Separate base units from display units</td></tr><tr><td>Test flakes</td><td>Recent blockhash / LiteSVM slot</td><td>Advance or expire blockhash between txs</td></tr></table>
+</section>
+
+<section id="programs" class="lesson">
+<h2>Anchor programs: turn invariants into constraints</h2>
+<div class="grid">
+<div class="card span6"><h3>Escrow state machine</h3><div class="flow"><div class="node">OPEN</div><div class="arrow">→</div><div class="node">TAKEN<br><small>pay + release + close</small></div></div><div class="flow" style="margin-top:12px"><div class="node">OPEN</div><div class="arrow">→</div><div class="node">REFUNDED<br><small>maker gets A + close</small></div></div><p class="muted small">Every terminal transition must make reuse impossible. “Double take” should fail because the escrow account is gone.</p></div>
+<div class="card span6"><h3>Account checklist</h3><div class="code">#[account(
+  mut,
+  has_one = maker,
+  seeds = [b"escrow", maker, seed],
+  bump = escrow.bump,
+  close = maker
+)]
+pub escrow: Account&lt;'info, Escrow&gt;;</div><p class="small muted">Anchor constraints are executable documentation. They reject malformed account graphs before your business logic runs.</p></div>
+<div class="card span6"><h3>LiteSVM is a microscope</h3><p>It runs an in-process SVM quickly. Load your compiled <code>.so</code>, create mints/ATAs, send signed transactions, inspect account bytes and balances. It is not a fake unit test: it exercises the program in a deterministic local runtime.</p><div class="code">anchor build
+cargo test --workspace --tests
+cargo clippy --workspace --all-targets -- -D warnings</div></div>
+<div class="card span6"><h3>Proof before pride</h3><p>A green test is only useful when it asserts state. For escrow, assert both token balances, vault authority, mint identities, and account closure. For a vault, assert rent preservation and that unauthorized users fail.</p><button onclick="toggle('proof')">Show invariant set</button><div id="proof" style="display:none" class="code">vault.owner == escrow PDA
+taker receives exact deposit A
+maker receives exact receive B
+escrow account == None after take
+vault account == None after take
+token supply unchanged</div></div>
+</div>
+</section>
+
+<section id="defi" class="lesson">
+<h2>AMMs: a vending machine that reprices itself</h2>
+<p>Unlike an order book, an AMM does not wait for a matching buyer. A pool holds two reserves. Your trade changes the ratio, and the curve quotes the next price.</p>
+<div class="grid">
+<div class="card span6"><h3>Constant-product intuition</h3><p><code>x · y = k</code>. If you add X, the pool must reduce Y so the product stays near <i>k</i>. Large trades relative to the pool cause more slippage.</p><label>Pool X <input id="rx" class="slider" type="range" min="100" max="10000" value="1000" oninput="amm()"></label><div id="rxv" class="metric"></div><label>Pool Y <input id="ry" class="slider" type="range" min="100" max="10000" value="1000" oninput="amm()"></label><div id="ryv" class="metric"></div></div>
+<div class="card span6"><h3>Try a swap</h3><label>Input X <input id="dx" class="slider" type="range" min="1" max="500" value="100" oninput="amm()"></label><div id="dxv" class="metric"></div><p>With a 0.30% fee:</p><div id="out" class="metric"></div><p id="price" class="muted"></p><p id="slip" class="warn"></p></div>
+<div class="card span4"><h3>Liquidity provider</h3><p>You deposit both assets, receive a share claim, and earn fees. But your withdrawal value changes with price.</p></div><div class="card span4"><h3>Impermanent loss</h3><p>If the external price moves, arbitrage rebalances your pool. You may have fewer valuable units than simply holding.</p></div><div class="card span4"><h3>MEV + safety</h3><p>Use slippage limits and deadlines. A public pending transaction can be observed and reordered.</p></div>
+</div>
+</section>
+
+<section id="career" class="lesson">
+<h2>Professional Solana developer path</h2>
+<div class="grid">
+<div class="card span4"><h3>Foundation</h3><p>Rust ownership, async clients, serialization, SPL Token, Token-2022, decimals, ATAs, PDAs, signatures, fees.</p></div>
+<div class="card span4"><h3>Protocol craft</h3><p>Anchor constraints, CPI, state machines, invariants, arithmetic safety, account closure, upgrade authority, fuzzing, LiteSVM.</p></div>
+<div class="card span4"><h3>Product craft</h3><p>Wallet UX, readable errors, confirmations, indexing, RPC resilience, observability, mainnet economics, audits.</p></div>
+</div>
+<div class="card" style="margin-top:18px"><h3>Your next 30 days</h3><ol><li>Rebuild your Homework 1 token/NFT flow from an empty folder.</li><li>Explain every account in Homework 2 without looking at code.</li><li>Add negative tests: wrong mint, wrong authority, replay, overflow, closed account.</li><li>Implement a toy constant-product AMM locally with invariant and slippage assertions.</li><li>Read one production protocol program and draw its account graph.</li><li>Ship a small frontend that displays state, asks for signatures, confirms, and refreshes.</li></ol></div>
+<div class="card"><h3>Principles to keep</h3><p><b>Accounts are the product.</b> Code only defines transitions.</p><p><b>Authority is a graph.</b> Every movement of value must have an explicit signer or PDA signer.</p><p><b>Tests are executable explanations.</b> Assert state, not vibes.</p><p><b>Start local, then simulate, then send.</b> Never debug with real money first.</p></div>
+</section>
+
+<footer><p>Built as a single-file learning artifact for the Solana Developer Course. Influenced by interactive, inspectable HTML learning artifacts and the “show the system, not just the prose” approach.</p><p>References: <a href="https://solana.com/docs" target="_blank">Solana docs</a> · <a href="https://www.anchor-lang.com/docs" target="_blank">Anchor</a> · <a href="https://www.litesvm.com/docs/getting-started" target="_blank">LiteSVM</a> · <a href="https://hackmd.io/@HaydenAdams/HJ9jLsfTz?type=view" target="_blank">Uniswap whitepaper notes</a> · <a href="https://github.com/kunchenguid/lavish-axi" target="_blank">Lavish AXI</a> · <a href="https://ai.engineer/speakers/thariq-shihipar" target="_blank">Thariq Shihipar</a></p></footer>
+</main>
+<script>
+const lessons=['map','mental','build','programs','defi','career'];
+function showLesson(id){lessons.forEach(x=>document.getElementById(x).classList.toggle('show',x===id));location.hash=id}
+function toggle(id){const e=document.getElementById(id);e.style.display=e.style.display==='none'?'block':'none'}
+function quiz(btn,ok){const a=btn.parentElement.querySelector('.answer');a.textContent=ok?'Correct: the program signs with the PDA seeds.':'Not quite: ask which authority owns the source account.';a.style.color=ok?'var(--b)':'var(--bad)'}
+function amm(){let x=+rx.value,y=+ry.value,d=+dx.value,fee=.003,net=d*(1-fee),o=(net*y)/(x+net);rxv.textContent=x.toFixed(0)+' X reserve';ryv.textContent=y.toFixed(0)+' Y reserve';dxv.textContent=d.toFixed(0)+' X in';out.textContent=o.toFixed(2)+' Y out';price.textContent='Execution price: '+(o/d).toFixed(4)+' Y per X · spot price before: '+(y/x).toFixed(4);slip.textContent='Slippage intuition: a larger trade relative to the pool moves the ratio more.'}
+document.querySelectorAll('[data-task]').forEach((e,i)=>{e.checked=localStorage.getItem('solana-task-'+i)==='1';e.onchange=()=>{localStorage.setItem('solana-task-'+i,e.checked?'1':'0');update()}})
+function update(){let a=[...document.querySelectorAll('[data-task]')],n=a.filter(x=>x.checked).length;document.getElementById('score').textContent=Math.round(n/a.length*100)+'% checklist complete'}
+if(location.hash)showLesson(location.hash.slice(1));amm();update()
+</script>
+</body>
+</html>

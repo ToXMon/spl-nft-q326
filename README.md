@@ -4,6 +4,25 @@ A complete, homework-ready pipeline for **fungible SPL tokens** and **NFTs via M
 
 Every write script is **SEND-gated**: it *builds, signs, and dry-runs* by default and only broadcasts when you explicitly opt in with `SEND=1` — so nothing touches the chain by accident.
 
+## Interactive learning lab
+
+Open [`docs/solana-learning-lab.html`](docs/solana-learning-lab.html) directly in a browser, or serve the repository locally:
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000/docs/solana-learning-lab.html
+```
+
+The lab is a self-contained, dependency-free field guide covering:
+
+- Solana accounts, mints, token accounts, ATAs, PDAs, signatures, and CPIs
+- The professional model → accounts → logic → LiteSVM → simulation → deployment loop
+- Anchor constraints, escrow state machines, vault authority, and failure-path testing
+- AMMs, `x · y = k`, liquidity providers, fees, slippage, impermanent loss, and MEV
+- A persistent checklist, interactive quizzes, and a 30-day professional learning path
+
+It is designed as an inspectable HTML artifact rather than a static README: use the tabs, try the AMM sliders, answer the authority quiz, and tick off the development workflow.
+
 ---
 
 ## Overview
